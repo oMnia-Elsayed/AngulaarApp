@@ -1,0 +1,21 @@
+
+<!-- <div class="container"> -->
+  <!-- <div class="row"> -->
+    <label>Server Name</label>
+    <!-- one way binding -->
+    <input type="text" class="form-control" (input)="onUpdateServerName($event)">
+    <!-- two way binding -->
+    <input type="text" class="form-control" [(ngModel)]="serverName">
+
+    <p> {{ serverName }}</p>
+
+    <button class="btn btn-primary"
+    [disabled] = "!allowNewServer"
+    (click)= "onCreateServer()"
+    > Add Server </button>
+
+    <!-- <p> Server with Id {{ serverId }} is {{ serverStatus }} </p> -->
+    <p> {{ serverCreationStatus }}</p>
+    <p> Server with Id {{ serverId }} is {{ getServerStatus() }} </p>
+  <!-- </div> -->
+<!-- </div> -->
