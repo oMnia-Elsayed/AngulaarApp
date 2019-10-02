@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
     };
     this.apiService.login(loginPayload).subscribe(data => {
       if (data.status === 200) {
-        window.localStorage.setItem('token', data.result.token);
+        // window.localStorage.setItem('token', data.result.token);
         this.router.navigate(['list-user']);
       } else {
         this.invalidLogin = true;
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       // tslint:disable-next-line: max-line-length
       username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20), Validators.pattern(/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/)]],
-      password: ['', Validators.required]
+      password: ['', [Validators.required , Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/)]]
     });
   }
 }
