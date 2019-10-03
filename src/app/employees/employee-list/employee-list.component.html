@@ -1,1 +1,19 @@
-<p>employee-list works!</p>
+
+<table class="table table-hover mt-4">
+  <thead>
+    <tr>
+      <th scope="col">FullName</th>
+      <th>Position</th>
+      <th>Phone</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let emp of employeeService.employees">
+      <td (click)="showEmployee(emp)"> {{emp.EmployeeFullName}} </td>
+      <td (click)="showEmployee(emp)"> {{emp.Position}} </td>
+      <td (click)="showEmployee(emp)"> {{emp.Mobile}} </td>
+      <td><button class="btn btn-sm btn-outline-danger"(click)="deleteEmployee(emp.EmployeeId)">X</button></td>
+    </tr>
+  </tbody>
+</table>

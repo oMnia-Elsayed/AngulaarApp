@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/_service/employee.service';
-import { FormBuilder, FormGroup, Validators, FormControl, Form } from '@angular/forms';
-import { Employee } from 'src/app/_model/employee';
+import { FormBuilder, FormGroup, Validators, FormControl, Form, NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-add-edit',
@@ -10,27 +10,25 @@ import { Employee } from 'src/app/_model/employee';
 })
 export class EmployeeAddEditComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private formBuilder: FormBuilder) { }
+  constructor(public employeeService: EmployeeService, private formBuilder: FormBuilder, private toastr: ToastrService) { }
 
-  // employee: Employee;
   employeeDataForm: FormGroup;
-  // employeeDataForm = new FormGroup({
-  //   fullname: new FormControl('alaa')
-  // });
 
   ngOnInit() {
     this.employeeDataForm = this.formBuilder.group({
-      // fullname: ['', [Validators.required , Validators.pattern(/^[a-z][a-z\s]*$/)]],
-      fullname: ['' , [Validators.required, Validators.pattern(/^[a-zA-Z ]+(([',. - ][a-zA-Z ])?[a-zA-Z ]*)*$/)]],
+      EmployeeFullName: ['' , [Validators.required, Validators.pattern(/^[a-zA-Z ]+(([',. - ][a-zA-Z ])?[a-zA-Z ]*)*$/)]],
       position: [''],
-      code: [''],
+      EMPCode: [''],
       mobile: ['', [Validators.required , Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{11}$/)]],
     });
-    // this.employee = this.employeeDataForm.value;
   }
 
-  onSubmit(form: Form) {
-    console.log(this.employeeDataForm);
-    // console.log(this.employee);
+  onSubmit() {
+    // console.log(this.employeeDataForm);
+    this.employeeService.addEmployee(this.employeeDataForm.value).subscribe(res => {
+      this.toastr.success('Inserted Successfully', 'Register Employee');
+      this.employeeDataForm.reset();
+      this.employeeService.getAllEmployees();
+    });
   }
 }

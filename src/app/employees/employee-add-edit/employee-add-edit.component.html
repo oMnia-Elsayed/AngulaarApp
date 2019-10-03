@@ -1,8 +1,8 @@
-<!-- <form #form="ngForm" (submit)="onSubmit(form)">
+<!-- <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
   <div class="form-group">
-    <label for="fullname">Full Name: </label>
+    <label for="EmployeeFullName">Full Name: </label>
     <span> *</span>
-    <input type="text" class="form-control" name="fullname" [(ngModel)]="employee.fullname" required pattern='/^[a-z][a-z\s]*$/'>
+    <input type="text" class="form-control" name="EmployeeFullName" #EmployeeFullName="ngModel" [(ngModel)]="employeeService.employee.EmployeeFullName" required pattern='/^[a-z][a-z\s]*$/'>
     <div class="error" *ngIf="employeeDataForm.controls['fullname'].hasError('pattern')">This field is required</div>
   </div>
 
@@ -39,9 +39,9 @@
   <div class="form-group">
     <label for="fullname">Full Name: </label>
     <span> *</span>
-    <input id="fullname" type="text" class="form-control" formControlName="fullname" required>
-    <div class="error" *ngIf="employeeDataForm.controls['fullname'].touched && employeeDataForm.controls['fullname'].hasError('required')">This field is required</div>
-    <div class="error" *ngIf="employeeDataForm.controls['fullname'].hasError('pattern')">Not a valid pattern !</div>
+    <input id="fullname" type="text" class="form-control" formControlName="EmployeeFullName" required>
+    <div class="error" *ngIf="employeeDataForm.controls['EmployeeFullName'].touched && employeeDataForm.controls['EmployeeFullName'].hasError('required')">This field is required</div>
+    <div class="error" *ngIf="employeeDataForm.controls['EmployeeFullName'].hasError('pattern')">No Numbers or special character !</div>
   </div>
 
   <div class="form-group">
@@ -52,7 +52,7 @@
   <div class="form-row">
     <div class="form-group col-sm-6">
       <label for="code">Code: </label>
-      <input id="code" type="text" class="form-control" name="code" formControlName="code">
+      <input id="code" type="text" class="form-control" name="code" formControlName="EMPCode">
     </div>
 
     <div class="form-group col-sm-6">
@@ -60,11 +60,11 @@
       <span> *</span>
       <input id="mobile" type="text" class="form-control" name="mobile" formControlName="mobile" required>
       <div class="error" *ngIf="employeeDataForm.controls['mobile'].touched && employeeDataForm.controls['mobile'].hasError('required')">This field is required</div>
-    <div class="error" *ngIf="employeeDataForm.controls['mobile'].hasError('pattern')">Enter 11 Character !</div>
+    <div class="error" *ngIf="employeeDataForm.controls['mobile'].hasError('pattern')">Enter only 11 Character !</div>
     </div>
   </div>
 
   <div class="form-group">
-    <button class="btn btn-primary btn-lg">Submit</button>
+    <button class="btn btn-primary btn-lg" [disabled]="employeeDataForm.invalid">Submit</button>
   </div>
 </form>
