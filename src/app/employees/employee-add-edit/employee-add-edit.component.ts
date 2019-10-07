@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/_service/employee.service';
 import { FormBuilder, FormGroup, Validators, FormControl, Form, NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-employee-add-edit',
@@ -16,19 +17,35 @@ export class EmployeeAddEditComponent implements OnInit {
 
   ngOnInit() {
     this.employeeDataForm = this.formBuilder.group({
+      EmployeeId: [],
       EmployeeFullName: ['' , [Validators.required, Validators.pattern(/^[a-zA-Z ]+(([',. - ][a-zA-Z ])?[a-zA-Z ]*)*$/)]],
-      position: [''],
-      EMPCode: [''],
-      mobile: ['', [Validators.required , Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{11}$/)]],
+      Position: [''],
+      EmpCode: [''],
+      Mobile: ['', [Validators.required , Validators.pattern(/^(\+\d{1,3}[- ]?)?\d{11}$/)]],
     });
+    this.employeeService.employee = this.employeeDataForm.value;
   }
 
   onSubmit() {
-    // console.log(this.employeeDataForm);
-    this.employeeService.addEmployee(this.employeeDataForm.value).subscribe(res => {
-      this.toastr.success('Inserted Successfully', 'Register Employee');
-      this.employeeDataForm.reset();
-      this.employeeService.getAllEmployees();
-    });
+    // console.log(this.employeeDataForm.value);
+    // console.log(this.employeeService.employee.EmployeeId);
+    // console.log(this.employeeService.employee);
+
+
+    if (this.employeeService.employee.EmployeeId == null  ) {
+      this.employeeService.addEmployee(this.employeeService.employee).subscribe(res => {
+        this.toastr.success('Inserted Successfully', 'Register Employee');
+        this.employeeDataForm.reset();
+        this.employeeService.getAllEmployees();
+      });
+    } else {
+      // $('.btn').innerHTML = 'update';
+      this.employeeService.updateEmployee(this.employeeService.employee).subscribe(res => {
+        this.toastr.info('Updated Successfully', 'Update Employee');
+        this.employeeDataForm.reset();
+        this.employeeService.employee = this.employeeDataForm.value;
+        this.employeeService.getAllEmployees();
+      });
+    }
   }
 }

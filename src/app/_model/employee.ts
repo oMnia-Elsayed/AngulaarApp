@@ -3,7 +3,7 @@ export interface Employee {
 
   EmployeeId: number;
   EmployeeFullName: string;
-  EMPCode: string;
+  EmpCode: string;
   Mobile: string;
   Position: string;
 }

@@ -6,10 +6,12 @@ input.ng-touched.ng-invalid{
 .form-group {
   span { color: #dc3545; }
 
-  .error{
+  .error, .hint{
     margin-top: 0.5rem;
     margin-left: 0.25rem;
     font-size: 80%;
+  }
+  .error {
     color: #dc3545;
   }
 }

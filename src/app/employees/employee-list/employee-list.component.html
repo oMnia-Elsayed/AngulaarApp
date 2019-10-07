@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let emp of employeeService.employees">
-      <td (click)="showEmployee(emp)"> {{emp.EmployeeFullName}} </td>
+      <td (click)="showEmployee(emp)"> [ {{emp.EmpCode}} ] - {{emp.EmployeeFullName}} </td>
       <td (click)="showEmployee(emp)"> {{emp.Position}} </td>
       <td (click)="showEmployee(emp)"> {{emp.Mobile}} </td>
       <td><button class="btn btn-sm btn-outline-danger"(click)="deleteEmployee(emp.EmployeeId)">X</button></td>

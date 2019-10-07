@@ -17,15 +17,16 @@ export class EmployeeListComponent implements OnInit {
   }
 
   showEmployee(emp: Employee) {
-    console.log(emp);
-    this.employeeService.employee = emp;
+    this.employeeService.employee = Object.assign({}, emp); // to prevent update on time
   }
 
   deleteEmployee(id: number) {
-    this.employeeService.deleteEmployee(id).subscribe(res => {
-      this.employeeService.getAllEmployees();
-      this.toastr.error('Employee Deleted !' , 'Delete Employee');
-    });
+    if(confirm('Are you sure you want to delete this employee ?!')) {
+      this.employeeService.deleteEmployee(id).subscribe(res => {
+        this.employeeService.getAllEmployees();
+        this.toastr.error('Employee Deleted !' , 'Delete Employee');
+      });
+    }
   }
 
 }

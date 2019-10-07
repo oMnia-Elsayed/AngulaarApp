@@ -1,41 +1,39 @@
-<!-- <form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+<form #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+  <input type="hidden" name="EmployeeId"  #EmployeeId="ngModel" [(ngModel)]="employeeService.employee.EmployeeId">
   <div class="form-group">
     <label for="EmployeeFullName">Full Name: </label>
     <span> *</span>
-    <input type="text" class="form-control" name="EmployeeFullName" #EmployeeFullName="ngModel" [(ngModel)]="employeeService.employee.EmployeeFullName" required pattern='/^[a-z][a-z\s]*$/'>
-    <div class="error" *ngIf="employeeDataForm.controls['fullname'].hasError('pattern')">This field is required</div>
+    <input type="text" class="form-control" name="EmployeeFullName"  #EmployeeFullName="ngModel" [(ngModel)]="employeeService.employee.EmployeeFullName" required>
+    <div class="error" *ngIf="EmployeeFullName.invalid && EmployeeFullName.touched">This field is required</div>
+
   </div>
 
   <div class="form-group">
     <label for="position">Position: </label>
-    <span> *</span>
-    <input type="text" class="form-control" name="position" [(ngModel)]="employee.position">
-    <div class="error d-none">This field is required</div>
+    <input type="text" class="form-control" name="Position" #Position="ngModel" [(ngModel)]="employeeService.employee.Position">
   </div>
 
   <div class="form-row">
     <div class="form-group col-sm-6">
       <label for="code">Code: </label>
-      <span> *</span>
-      <input type="text" class="form-control" name="code" [(ngModel)]="employee.code">
-      <div class="error d-none">This field is required</div>
+      <input type="text" class="form-control" name="EmpCode" #EmpCode="ngModel" [(ngModel)]="employeeService.employee.EmpCode">
     </div>
 
     <div class="form-group col-sm-6">
       <label for="mobile">Mobile: </label>
       <span> *</span>
-      <input type="text" class="form-control" name="mobile" [(ngModel)]="employee.mobile" required>
-      <div class="error d-none">This field is required</div>
+      <input type="text" class="form-control" name="Mobile" #Mobile="ngModel" [(ngModel)]="employeeService.employee.Mobile" required>
+      <div class="error" *ngIf="Mobile.invalid && Mobile.touched">This field is required</div>
     </div>
   </div>
 
   <div class="form-group">
-    <button class="btn btn-primary btn-lg" >Submit</button>
+    <button class="btn btn-primary btn-lg" [disabled]="form.invalid" >Submit</button>
   </div>
-</form> -->
+</form>
 
 
-<form (ngSubmit)="onSubmit()" [formGroup]="employeeDataForm" autocomplete="off">
+<!-- <form (ngSubmit)="onSubmit()" [formGroup]="employeeDataForm" autocomplete="off">
   <div class="form-group">
     <label for="fullname">Full Name: </label>
     <span> *</span>
@@ -46,25 +44,25 @@
 
   <div class="form-group">
     <label for="position">Position: </label>
-    <input id="position" type="text" class="form-control" name="position" formControlName="position">
+    <input id="position" type="text" class="form-control" name="position" formControlName="Position">
   </div>
 
   <div class="form-row">
     <div class="form-group col-sm-6">
       <label for="code">Code: </label>
-      <input id="code" type="text" class="form-control" name="code" formControlName="EMPCode">
+      <input id="code" type="text" class="form-control" name="code" formControlName="EmpCode">
     </div>
 
     <div class="form-group col-sm-6">
       <label for="mobile">Mobile: </label>
       <span> *</span>
-      <input id="mobile" type="text" class="form-control" name="mobile" formControlName="mobile" required>
-      <div class="error" *ngIf="employeeDataForm.controls['mobile'].touched && employeeDataForm.controls['mobile'].hasError('required')">This field is required</div>
-    <div class="error" *ngIf="employeeDataForm.controls['mobile'].hasError('pattern')">Enter only 11 Character !</div>
+      <input id="mobile" type="text" class="form-control" name="mobile" formControlName="Mobile" required>
+      <div class="error" *ngIf="employeeDataForm.controls['Mobile'].touched && employeeDataForm.controls['Mobile'].hasError('required')">This field is required</div>
+    <div class="error" *ngIf="employeeDataForm.controls['Mobile'].hasError('pattern')">Enter only 11 Character !</div>
     </div>
   </div>
 
   <div class="form-group">
     <button class="btn btn-primary btn-lg" [disabled]="employeeDataForm.invalid">Submit</button>
   </div>
-</form>
+</form> -->

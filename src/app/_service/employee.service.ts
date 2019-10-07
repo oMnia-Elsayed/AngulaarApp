@@ -21,6 +21,13 @@ export class EmployeeService {
     this.http.get(this.baseURL + '/Employee').toPromise().then(res => this.employees = res as Employee[]);
   }
 
+  // getEmployeeById(id) {
+  //   console.log(this.http.get(this.baseURL + `/Employee/${id}`));
+  // }
+
+  updateEmployee(emp: Employee) {
+    return this.http.put(this.baseURL + `/Employee/${emp.EmployeeId}`, emp);
+  }
   deleteEmployee(id: number) {
     return this.http.delete(this.baseURL + `/Employee/${id}`);
   }
