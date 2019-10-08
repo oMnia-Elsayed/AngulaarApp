@@ -3,27 +3,28 @@
   <div class="form-group">
     <label for="EmployeeFullName">Full Name: </label>
     <span> *</span>
-    <input type="text" class="form-control" name="EmployeeFullName"  #EmployeeFullName="ngModel" [(ngModel)]="employeeService.employee.EmployeeFullName" required>
+    <input type="text" class="form-control" name="EmployeeFullName"  #EmployeeFullName="ngModel" [(ngModel)]="employeeService.employee.EmployeeFullName" required maxlength="50">
     <div class="error" *ngIf="EmployeeFullName.invalid && EmployeeFullName.touched">This field is required</div>
-
+    <div class="hint">No Numbers or special character !</div>
   </div>
 
   <div class="form-group">
     <label for="position">Position: </label>
-    <input type="text" class="form-control" name="Position" #Position="ngModel" [(ngModel)]="employeeService.employee.Position">
+    <input type="text" class="form-control" name="Position" #Position="ngModel" [(ngModel)]="employeeService.employee.Position" maxlength="20">
   </div>
 
   <div class="form-row">
     <div class="form-group col-sm-6">
       <label for="code">Code: </label>
-      <input type="text" class="form-control" name="EmpCode" #EmpCode="ngModel" [(ngModel)]="employeeService.employee.EmpCode">
+      <input type="text" class="form-control" name="EmpCode" #EmpCode="ngModel" [(ngModel)]="employeeService.employee.EmpCode" maxlength="5">
     </div>
 
     <div class="form-group col-sm-6">
       <label for="mobile">Mobile: </label>
       <span> *</span>
-      <input type="text" class="form-control" name="Mobile" #Mobile="ngModel" [(ngModel)]="employeeService.employee.Mobile" required>
+      <input type="text" class="form-control" name="Mobile" #Mobile="ngModel" [(ngModel)]="employeeService.employee.Mobile" required minlength="11" maxlength="11" >
       <div class="error" *ngIf="Mobile.invalid && Mobile.touched">This field is required</div>
+      <div class="hint">Enter only 11 Number !</div>
     </div>
   </div>
 
@@ -56,7 +57,7 @@
     <div class="form-group col-sm-6">
       <label for="mobile">Mobile: </label>
       <span> *</span>
-      <input id="mobile" type="text" class="form-control" name="mobile" formControlName="Mobile" required>
+      <input id="mobile" type="text" class="form-control" name="mobile" formControlName="Mobile" required minlength="11" maxlength="11">
       <div class="error" *ngIf="employeeDataForm.controls['Mobile'].touched && employeeDataForm.controls['Mobile'].hasError('required')">This field is required</div>
     <div class="error" *ngIf="employeeDataForm.controls['Mobile'].hasError('pattern')">Enter only 11 Character !</div>
     </div>

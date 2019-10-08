@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-
+import { ModalModule } from 'ngb-modal';
 import { AppComponent } from './app.component';
 import { ServerComponent } from '../app/server/server.component';
 import { WarningAlertComponent } from '../app/warning-alert/warning-alert.component';
@@ -48,6 +48,7 @@ import { EmployeeAddEditComponent } from './employees/employee-add-edit/employee
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ModalModule,
     ToastrModule.forRoot(),
     RouterModule.forRoot([
       { path: '', component: EmployeesComponent }

@@ -26,26 +26,27 @@ export class EmployeeAddEditComponent implements OnInit {
     this.employeeService.employee = this.employeeDataForm.value;
   }
 
+  refreshList() {
+    this.employeeDataForm.reset();
+    this.employeeService.employee = this.employeeDataForm.value;
+    this.employeeService.getAllEmployees();
+  }
+
   onSubmit() {
     // console.log(this.employeeDataForm.value);
     // console.log(this.employeeService.employee.EmployeeId);
     // console.log(this.employeeService.employee);
-
-
     if (this.employeeService.employee.EmployeeId == null  ) {
       this.employeeService.addEmployee(this.employeeService.employee).subscribe(res => {
         this.toastr.success('Inserted Successfully', 'Register Employee');
-        this.employeeDataForm.reset();
-        this.employeeService.getAllEmployees();
+        this.refreshList();
       });
     } else {
-      // $('.btn').innerHTML = 'update';
       this.employeeService.updateEmployee(this.employeeService.employee).subscribe(res => {
         this.toastr.info('Updated Successfully', 'Update Employee');
-        this.employeeDataForm.reset();
-        this.employeeService.employee = this.employeeDataForm.value;
-        this.employeeService.getAllEmployees();
+        this.refreshList();
       });
     }
   }
+
 }
